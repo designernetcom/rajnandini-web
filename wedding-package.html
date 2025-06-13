@@ -33,7 +33,101 @@
     <!-- Favicon and Touch Icons  -->
 
     <link rel="apple-touch-icon-precomposed" href="assets/images/favicon.png">
+<style>
+    .wedding-packages {
+  padding: 4rem 2rem;
+  background: #fff7f7;
+  font-family: 'Segoe UI', sans-serif;
+}
 
+.section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  color: #c31432;
+  margin-bottom: 0.5rem;
+}
+
+.section-header p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.packages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.package-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  width: 500px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.package-card:hover {
+  transform: translateY(-5px);
+}
+
+.package-card h3 {
+  color: #240b36;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.package-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.package-card ul li {
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.package-card ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #c31432;
+}
+
+.package-card .price {
+  font-size: 1.4rem;
+  color: #148cb8;
+  font-weight: bold;
+  text-align: center;
+}
+
+.package-card.popular {
+  border: 2px solid #c31432;
+  background: #fff0f0;
+}
+
+.package-card .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #c31432;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 0.75rem;
+  border-radius: 5px;
+}
+
+</style>
 </head>
 
 <body class="body">
@@ -45,8 +139,7 @@
         <div id="page" class="">
 
   
-           <!-- header -->
-            <header id="header_main" class="header header-fixed style-absolute">
+              <header id="header_main" class="header header-fixed style-absolute">
         
                 <div class="header-inner">
                     <div class="header-inner-wrap">
@@ -65,12 +158,12 @@
                                     <a href="about.html">About</a>
                                 </li>
                                 <li class="menu-item menu-item-has-children">
-                                    <a href="event.html">Event</a>
+                                    <a href="">Event</a>
                                     <ul class="sub-menu">
-                                         <li class="menu-item"><a href="wedding-package.html">Wedding Package</a></li>
-                                        <li class="menu-item"><a href="birthday-package.html">Birthday Package</a></li>
-                                        <li class="menu-item"><a href="engagement-package.html">Engagement Package</a></li>
-                                        <li class="menu-item"><a href="munjya-package.html">Munjya Package</a></li>
+                                         <li class="menu-item"><a href="wedding-package.html">Wedding </a></li>
+                                        <li class="menu-item"><a href="birthday-package.html">Birthday </a></li>
+                                        <li class="menu-item"><a href="engagement-package.html">Engagement </a></li>
+                                        <li class="menu-item"><a href="munjya-package.html">Munjya </a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -125,10 +218,10 @@
                                 <li class="menu-item menu-item-has-children-mobile">
                                     <a class="item-menu-mobile">Event</a>
                                     <ul class="sub-menu-mobile">
-                                        <li class="menu-item"><a href="wedding-package.html">Wedding Package</a></li>
-                                        <li class="menu-item"><a href="birthday-package.html">Birthday Package</a></li>
-                                        <li class="menu-item"><a href="engagement-package.html">Engagement Package</a></li>
-                                        <li class="menu-item"><a href="munjya-package.html">Munjya Package</a></li>
+                                        <li class="menu-item"><a href="wedding-package.html">Wedding </a></li>
+                                        <li class="menu-item"><a href="birthday-package.html">Birthday </a></li>
+                                        <li class="menu-item"><a href="engagement-package.html">Engagement </a></li>
+                                        <li class="menu-item"><a href="munjya-package.html">Munjya </a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item">
@@ -143,11 +236,10 @@
                     </div>
                 </div>
             </header>
-            <!-- /header -->
 
             <!-- banner-page -->
 
-            <div class="banner-page contact-page">
+            <div class="banner-page event-page">
 
                 <div class="themesflat-container">
                     <div class="row">
@@ -181,93 +273,106 @@
                 </div>
             </div>
             <!-- /wg-private -->
-
-
-            <!-- wg-about -->
-            <div class="wg-about">
-                <div class="themesflat-container full">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="wrap">
-                                <div class="image wow fadeInLeft">
-                                    <img src="assets/images/item-background/19-SM274763.jpg" alt="">
+            <div class="grid-private">
+                <div class="private-item">
+                    <div class="content">
+                        <div class="title wow fadeInUp"><a href="#">Wedding</a></div>
+                        <p class="wow fadeInUp">We are your go-to people when it comes to weddings. Being one of the prestigious wedding halls in Pune, we can do as much or as little as you need – looking after all styling, location, and every single detail required for the wedding planning. We think of everything so that you don’t have to and we pride ourselves on always having your best interest at heart.</p>
+                        <ul>
+                            <li class="wow fadeInUp">
+                                <i class="icon-checkmark"></i> Your dream wedding, perfectly planned — with Rajnandini Banquet.
+                            </li>
+                            <li class="wow fadeInUp">
+                                <i class="icon-checkmark"></i> One of Pune’s most prestigious wedding venues, known for elegance and excellence.
+                            </li>
+                            <li class="wow fadeInUp">
+                                <i class="icon-checkmark"></i>  With your best interest at heart, we make your wedding unforgettable and stress-free.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="right wow fadeInRight">
+                        <div class="swiper-container" data-swiper='{
+                            "spaceBetween": 0,
+                            "slidesPerView": 1,
+                            "navigation": {
+                                "nextEl": ".private-next",
+                                "prevEl": ".private-prev"
+                            }
+                        }'>
+                            <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                    <div class="image">
+                                        <img src="assets/images/item-background/19-SM274763.jpg" alt="">
+                                    </div>
                                 </div>
-                                <!-- <div class="content">
-                              
-                                </div> -->
-                                <div class="hour-opening">
-                                    <div class="title">Wedding Packages</div>
-                                    <ul>
-                                        <li>
-                                          <div ><img src="assets/images/amenities/tick.png" style="height: 20px; padding-left: 5px;font-size: 30px;text-transform: capitalize;" /> <span style="text-transform: uppercase; line-height: 22px;">  stage decoration 42 ft </span></div>   
-                                          
-                                            
-                                        </li>
-                                        <li>
-                                           <div ><img src="assets/images/amenities/tick.png" style="height: 20px; padding-left: 5px;font-size: 30px;text-transform: capitalize;" /><span style="text-transform: uppercase; line-height: 22px;">  entry to stage carpet  </span></div> 
-                                            
-                                           
-                                            
-                                        </li>
-                                          <li>
-                                             <div ><img src="assets/images/amenities/tick.png" style="height: 20px; padding-left: 5px;font-size: 30px;text-transform: capitalize;" /> <span style="text-transform: uppercase; line-height: 22px;">  sound system with operator ( pa system) </span></div>
-                                           
-                                        </li>
-                               <li>
-                                             <div ><img src="assets/images/amenities/tick.png" style="height: 20px; padding-left: 5px;font-size: 30px;text-transform: capitalize;" /> <span style="text-transform: uppercase; line-height: 22px;">  10 round tables with cover and tops  </span></div>
-                                           
-                                        </li>
-                                        <li>
-                                             <div ><img src="assets/images/amenities/tick.png" style="height: 20px; padding-left: 5px;font-size: 30px;text-transform: capitalize;" /> <span style="text-transform: uppercase; line-height: 22px;">  vip chair cover and bow   </span></div>
-                                           
-                                        </li>
-                                        <li>
-                                             <div ><img src="assets/images/amenities/tick.png" style="height: 20px; padding-left: 5px;font-size: 30px;text-transform: capitalize;" /> <span style="text-transform: uppercase; line-height: 22px;">  stage floor carpet </span></div>
-                                           
-                                        </li>
-                                        <li>
-                                             <div ><img src="assets/images/amenities/tick.png" style="height: 20px; padding-left: 5px;font-size: 30px;text-transform: capitalize;" /> <span style="text-transform: uppercase; line-height: 22px;">  2 generator for electricity backup </span></div>
-                                           
-                                        </li>
-                                         <li>
-                                             <div ><img src="assets/images/amenities/tick.png" style="height: 20px; padding-left: 5px;font-size: 30px;text-transform: capitalize;" /> <span style="text-transform: uppercase; line-height: 22px;">   8 flower pots  </span></div>
-                                           
-                                        </li>
-                                         <li>
-                                             <div ><img src="assets/images/amenities/tick.png" style="height: 20px; padding-left: 5px;font-size: 30px;text-transform: capitalize;" /> <span style="text-transform: uppercase; line-height: 22px;">  name board with essel stand </span></div>
-                                           
-                                        </li>
-                                         <li>
-                                             <div ><img src="assets/images/amenities/tick.png" style="height: 20px; padding-left: 5px;font-size: 30px;text-transform: capitalize;" /> <span style="text-transform: uppercase; line-height: 22px;">  lights 15 to 20 led parken  lights vary according to theme decor </span></div>
-                                           
-                                        </li>
-                                         <li>
-                                             <div ><img src="assets/images/amenities/tick.png" style="height: 20px; padding-left: 5px;font-size: 30px;text-transform: capitalize;" /> <span style="text-transform: uppercase; line-height: 22px;">  1 entry arch gate (artificial flowers) or with 2 cutouts </span></div>
-                                           
-                                        </li>
-                                         <li>
-                                             <div ><img src="assets/images/amenities/tick.png" style="height: 20px; padding-left: 5px;font-size: 30px;text-transform: capitalize;" /> <span style="text-transform: uppercase; line-height: 22px;">  photographer ,videographer </span></div>
-                                           
-                                        </li>
-                                       
-                                    </ul>
+                                <div class="swiper-slide">
+                                    <div class="image">
+                                        <img src="assets/images/item-background/20-SM453576.jpg" alt="">
+                                    </div>
                                 </div>
+                            
+                                <div class="swiper-slide">
+                                    <div class="image">
+                                        <img src="assets/images/item-background/120-SM504144.jpg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-button">
+                                <div class="swiper-button-prev private-prev style-3"></div>
+                                <div class="swiper-button-next private-next style-3"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- /wg-about -->
+                </div>
+             
+
+    <!-- Wedding Package Section -->
+<section class="wedding-packages">
+  <div class="container">
+    <div class="section-header">
+      <h2>Wedding Packages</h2>
+      <p>Celebrate your big day with elegance, comfort, and unforgettable memories.</p>
+    </div>
+    <div class="packages">
+     
+
+      <div class="package-card popular">
+        <div class="badge">Popular</div>
+       
+        <ul>
+          <li style="font-size: 20px;"><h3 style="text-align: left;text-transform: capitalize;">stage decoration 42 ft Any theme for example jungle theme etc</h3></li>
+          <li style="font-size: 20px;"><h3 style="text-align: left;text-transform: capitalize;">entry to stage carpet</h3></li>
+          <li style="font-size: 20px;"><h3 style="text-align: left;text-transform: capitalize;">sound system with operator ( pa system)</h3></li>
+          <li style="font-size: 20px;"><h3 style="text-align: left;text-transform: capitalize;">10 round tables with cover and tops</h3></li>
+          <li style="font-size: 20px;"><h3 style="text-align: left;text-transform: capitalize;">vip chair cover and bow</h3></li>
+          <li style="font-size: 20px;"><h3 style="text-align: left;text-transform: capitalize;">stage floor carpet</h3></li>
+          <li style="font-size: 20px;" ><h3 style="text-align: left;text-transform: capitalize;" >2 generator for electricity backup</h3></li>
+          <li style="font-size: 20px;" ><h3 style="text-align: left;text-transform: capitalize;" > 8 balloon pillars</h3></li>
+          <li style="font-size: 20px;" ><h3 style="text-align: left;text-transform: capitalize;" >  name board with essel stand</h3></li>
+          <li style="font-size: 20px;" ><h3 style="text-align: left;text-transform: capitalize;" > lights 15 to 20 led parken lights vary according to theme decor</h3></li>
+          <li style="font-size: 20px;" ><h3 style="text-align: left;text-transform: capitalize;" > 1 entry arch gate (artificial flowers) or with 2 cutouts</h3></li>
+        </ul>
+        
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+
          <!-- wg-reservation -->
            <div class="wg-reservation" >
       
-                <img class="item-2" src="assets/images/item-background/cup.png" alt="">
-                <div class="themesflat-container w700">
+                <!-- <img class="item-2" src="assets/images/item-background/cup.png" alt=""> -->
+                <div class="themesflat-container ">
                     <div class="row">
+                    
                         <div class="col-12">
                             <div class="wrap">
-                                <div class="icon"><i class="icon-phone"></i></div>
-                                <h4 class="text-center p-6">Book your Packages</h4>
+                               
+                                <h4 class="text-center pt-20">Book your Packages</h4>
                                 <form class="comment-form type-1">
                                     <div class="columns">
                                         <fieldset class="name">
@@ -306,128 +411,128 @@
                 </div>
             </div>
             <!-- /wg-reservation -->
-           <!-- footer -->
-           <footer id="footer" class="footer">
-            <img class="item-1" src="assets/images/item-background/footer-1.png" alt="">
-            <img class="item-2" src="assets/images/item-background/footer-2.png" alt="">
-            <div class="themesflat-container">
-                <div class="row">
-                    <div class="col-md-6 col-lg-3 logo">
-                        <div class="logo-footer" id="logo-footer">
-                            <a href="index.html">
-                                <img  id="logo_footer" alt="" src="assets/images/logo/final logo.png"  data-retina="assets/images/logo/final logo.png" style="height: 110px;">
-                            </a>
+               <!-- footer -->
+               <footer id="footer" class="footer">
+                <img class="item-1" src="assets/images/item-background/footer-1.png" alt="">
+                <img class="item-2" src="assets/images/item-background/footer-2.png" alt="">
+                <div class="themesflat-container">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3 logo">
+                            <div class="logo-footer" id="logo-footer">
+                                <a href="index.html">
+                                    <img  id="logo_footer" alt="" src="assets/images/logo/final logo.png"  data-retina="assets/images/logo/final logo.png" style="height: 110px;">
+                                </a>
+                            </div>
+                            <div class="text">Rajnandini Banquet is a contemporary full service banquet located in the heart of Pune. the banquet is just a 10 minute drive from Pune International Airport & 15 min from Pune Railway Station.</div>
                         </div>
-                        <div class="text">Rajnandini Banquet is a contemporary full service banquet located in the heart of Pune. the banquet is just a 10 minute drive from Pune International Airport & 15 min from Pune Railway Station.</div>
-                    </div>
-               
-                    <div class="col-md-6 col-lg-3 time">
-                        <div class="title-wg">OUR EVENTS</div>
-                        <ul>
-                            <li>
-                                <div class="text">
-                                    <span>Wedding </span>
-                                    
-                                </div>
-                            </li>
-                            <li>
-                                <div class="text">
-                                    <span>Engagement</span>
-                                    
-                                </div>
-                            </li>
-                            <li>
-                                <div class="text">
-                                    <span>Birthday Party </span>
-                                    
-                                </div>
-                            </li>
-                            <li>
-                                <div class="text">
-                                    <span>Corporate Events </span>
-                                    
-                                </div>
-                            </li>
-                            <li>
-                                <div class="text">
-                                    <span> Naming Ceremony</span>
-                                   
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                     <div class="col-md-6 col-lg-3 time">
-                        <div class="title-wg">OUR EVENTS</div>
-                        <ul>
-                            <li>
-                                <div class="text">
-                                    <span >Munj </span>
-                                    
-                                </div>
-                            </li>
-                            <li>
-                                <div class="text">
-                                    <span>Baby Shower</span>
-                                    
-                                </div>
-                            </li>
-                            <li>
-                                <div class="text">
-                                    <span> Reception </span>
-                                    
-                                </div>
-                            </li>
-                            <li>
-                                <div class="text">
-                                    <span>Get Together </span>
-                                    
-                                </div>
-                            </li>
-                            <li>
-                                <div class="text">
-                                    <span>  And Many More...</span>
-                                   
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                         <div class="col-md-6 col-lg-3 contact">
-                        <div class="title-wg">Contact Us</div>
-                        <ul>
-                            <li>
-                                <div class="text">
-                                    <span>LOCATION:</span> <br>
-                                    Sr. No. 25, Near Satyam Rajyog Society, 
+                   
+                        <div class="col-md-6 col-lg-3 time">
+                            <div class="title-wg">OUR EVENTS</div>
+                            <ul>
+                                <li>
+                                    <div class="text">
+                                        <span>Wedding </span>
+                                        
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <span>Engagement</span>
+                                        
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <span>Birthday Party </span>
+                                        
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <span>Corporate Events </span>
+                                        
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <span> Naming Ceremony</span>
+                                       
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                         <div class="col-md-6 col-lg-3 time">
+                            <div class="title-wg">OUR EVENTS</div>
+                            <ul>
+                                <li>
+                                    <div class="text">
+                                        <span >Munj </span>
+                                        
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <span>Baby Shower</span>
+                                        
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <span> Reception </span>
+                                        
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <span>Get Together </span>
+                                        
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <span>  And Many More...</span>
+                                       
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                             <div class="col-md-6 col-lg-3 contact">
+                            <div class="title-wg">Contact Us</div>
+                            <ul>
+                                <li>
+                                    <div class="text">
+                                        <span>LOCATION:</span> <br>
+                                        Sr. No. 25, Near Satyam Rajyog Society, 
 Dhanori, Pune, Maharashtra, 411015.   
-                                </div>
-                            </li>
-                            <li>
-                                <div class="text">
-                                    <span>EMAIL:</span> <br>
-                                    rajnandinibanquet5550@gmail.com 
-                            </li>
-                               <li>
-                                <div class="text">
-                                    <span>PHONE:</span> <br>
-                                  +91 97630 55550  |  +91 90210 55550
-                                </div>
-                            </li>
-                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="text">
+                                        <span>EMAIL:</span> <br>
+                                        rajnandinibanquet5550@gmail.com 
+                                </li>
+                                   <li>
+                                    <div class="text">
+                                        <span>PHONE:</span> <br>
+                                      +91 97630 55550  |  +91 90210 55550
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="14" viewBox="0 0 15 14">
+                            <image   data-name="" width="15" height="14" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAOCAYAAADwikbvAAAA6klEQVQokYWTvRGDMAyFHxwLkBFYgdodjBBKlzBCUlC6SEZISspkhKSjDSt4Ba+QEyfdGZ8NanxI/qynHzIc2DyNFYASgFPaWP92FJ6nkS73AC4Mir2VNp18FBGwAfAAUEXe3fg2mRn87BTSshqrtBkyD6wB/HbAK583Pk++7NcBSM3y71Q5Z+0TNVqW6iKPW8ncR8A7dZdlNkFsUdq4gsdSewHK0rEv1YMneFRlECDwnFAjWVc4562RzaHGkMQUKKpWk5oHhpadORPY+isaLgmBYXPIvpQg3O1wPakW+RHW+sintKGubw3AH0hmQnn/bYKgAAAAAElFTkSuQmCC"/>
+                        </svg>
+                        <div class="text">Copyright © 2025 Rajnandini Banquet.  All Rights Reserved.</div>
+                        <div class="text">
+                            
+                            Design By <a href="https://www.netcom-india.com/" style="color: #fff;">Netcom Business Solutions Pvt ltd</a>
+                        </div>
                     </div>
                 </div>
-                <div class="footer-bottom">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="14" viewBox="0 0 15 14">
-                        <image   data-name="" width="15" height="14" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAOCAYAAADwikbvAAAA6klEQVQokYWTvRGDMAyFHxwLkBFYgdodjBBKlzBCUlC6SEZISspkhKSjDSt4Ba+QEyfdGZ8NanxI/qynHzIc2DyNFYASgFPaWP92FJ6nkS73AC4Mir2VNp18FBGwAfAAUEXe3fg2mRn87BTSshqrtBkyD6wB/HbAK583Pk++7NcBSM3y71Q5Z+0TNVqW6iKPW8ncR8A7dZdlNkFsUdq4gsdSewHK0rEv1YMneFRlECDwnFAjWVc4562RzaHGkMQUKKpWk5oHhpadORPY+isaLgmBYXPIvpQg3O1wPakW+RHW+sintKGubw3AH0hmQnn/bYKgAAAAAElFTkSuQmCC"/>
-                    </svg>
-                    <div class="text">Copyright © 2025 Rajnandini Banquet.  All Rights Reserved.</div>
-                    <div class="text">
-                        
-                        Design By <a href="https://www.netcom-india.com/" style="color: #fff;">Netcom Business Solutions Pvt ltd</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- /footer -->
+            </footer>
+            <!-- /footer -->
 
 
         </div>
