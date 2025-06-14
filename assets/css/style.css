@@ -1200,14 +1200,14 @@ a:focus {
 }
 
 .button-style-1:hover {
-    background-color: #2D2723;
+    background-color: #AC873F;
 }
 
 .button-reply {
     width: max-content;
     height: 33px;
     padding: 0 18px 0 15px;
-    background-color: #2D2723;
+    background-color: #AC873F;
     border-radius: 5px;
     color: #FFF;
     display: flex;
@@ -1219,7 +1219,7 @@ a:focus {
 }
 
 .button-reply:hover {
-    background-color: #C3A27C;
+    background-color: #AC873F;
     color: #FFF;
 }
 
@@ -1961,7 +1961,7 @@ a:focus {
 
 .footer .title-wg {
     font-weight: 600;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 32px;
     color: #FFF;
     text-transform: uppercase;
