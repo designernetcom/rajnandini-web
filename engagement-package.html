@@ -33,103 +33,529 @@
     <!-- Favicon and Touch Icons  -->
 
     <link rel="apple-touch-icon-precomposed" href="assets/images/favicon.png">
-<style>
-    .wedding-packages {
-  padding: 4rem 2rem;
-  background: #fff7f7;
-  font-family: 'Segoe UI', sans-serif;
-}
+ <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.section-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 25%, #2d2d2d 50%, #1a1a1a 75%, #0f0f0f 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
-.section-header h2 {
-  font-size: 2.5rem;
-  color: #c31432;
-  margin-bottom: 0.5rem;
-}
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
 
-.section-header p {
-  font-size: 1rem;
-  color: #555;
-}
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
 
-.packages {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-}
+        .hero-section {
+            text-align: center;
+            margin-bottom: 80px;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease-out forwards;
+        }
 
-.package-card {
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 10px;
-  width: 500px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  position: relative;
-  transition: transform 0.3s ease;
-}
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #EDECEC, #f4e4a6, #EDECEC, #EDECEC);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: shimmerGold 4s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
 
-.package-card:hover {
-  transform: translateY(-5px);
-}
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: #cccccc;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
 
-.package-card h3 {
-  color: #240b36;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  text-align: center;
-}
+        .package-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+            opacity: 0;
+            animation: slideInUp 1s ease-out 0.3s forwards;
+        }
 
-.package-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1rem;
-}
+        .package-images {
+            position: relative;
+            height: 850px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+        }
 
-.package-card ul li {
-  margin-bottom: 0.5rem;
-  padding-left: 1.5rem;
-  position: relative;
-}
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+            filter: brightness(0.9);
+        }
 
-.package-card ul li::before {
-  content: "✔";
-  position: absolute;
-  left: 0;
-  color: #c31432;
-}
+        .package-showcase:hover .main-image {
+            transform: scale(1.05);
+            filter: brightness(1);
+        }
 
-.package-card .price {
-  font-size: 1.4rem;
-  color: #148cb8;
-  font-weight: bold;
-  text-align: center;
-}
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(0,0,0,0.3) 100%);
+        }
 
-.package-card.popular {
-  border: 2px solid #c31432;
-  background: #fff0f0;
-}
+        .secondary-image {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 150px;
+            height: 100px;
+            border-radius: 15px;
+            object-fit: cover;
+            border: 3px solid #d4af37;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+        }
 
-.package-card .badge {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  background: #c31432;
-  color: #fff;
-  padding: 5px 10px;
-  font-size: 0.75rem;
-  border-radius: 5px;
-}
+        .secondary-image:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
+        }
 
-</style>
+        .package-details {
+            padding: 40px;
+            background: linear-gradient(145deg, rgba(42, 42, 42, 0.8), rgba(30, 30, 30, 0.8));
+            border-radius: 25px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .package-details:hover::before {
+            left: 100%;
+        }
+
+        .package-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #EDECEC;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #d4af37, #f4e4a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            animation: priceGlow 2s ease-in-out infinite alternate;
+        }
+
+        .package-description {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .package-description li {
+            padding: 12px 0;
+            position: relative;
+            padding-left: 35px;
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInLeft 0.6s ease-out forwards;
+        }
+
+        .package-description li:nth-child(1) { animation-delay: 0.1s; }
+        .package-description li:nth-child(2) { animation-delay: 0.2s; }
+        .package-description li:nth-child(3) { animation-delay: 0.3s; }
+        .package-description li:nth-child(4) { animation-delay: 0.4s; }
+        .package-description li:nth-child(5) { animation-delay: 0.5s; }
+        .package-description li:nth-child(6) { animation-delay: 0.6s; }
+        .package-description li:nth-child(7) { animation-delay: 0.7s; }
+        .package-description li:nth-child(8) { animation-delay: 0.8s; }
+
+        .package-description li::before {
+           content: '✓';
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+            font-size: 1.5rem;
+            animation: starTwinkle 2s ease-in-out infinite;
+        }
+
+        .package-description li:hover {
+            color: #d4af37;
+            transform: translateX(10px);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .booking-section {
+            background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+            border-radius: 30px;
+            padding: 50px;
+            margin-top: 60px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            opacity: 0;
+            animation: slideInUp 1s ease-out 0.6s forwards;
+        }
+
+        .booking-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 30px;
+            padding: 2px;
+            background: linear-gradient(45deg, #d4af37, transparent, #d4af37);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: exclude;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+        }
+
+        .booking-title {
+            font-size: 2.5rem;
+            color: #EDECEC;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .booking-form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            color: #ffffff;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #EDECEC;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #aaaaaa;
+            transition: color 0.3s ease;
+        }
+
+        .form-input:focus::placeholder {
+            color: #EDECEC;
+        }
+
+        .book-button {
+            width: 100%;
+            padding: 25px;
+            background: linear-gradient(45deg, #EDECEC, #f4e4a6, #EDECEC);
+            background-size: 300% 300%;
+            border: none;
+            border-radius: 50px;
+            color: #1a1a1a;
+            font-size: 1.4rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .book-button:hover {
+            animation: shimmerGold 1.5s ease-in-out;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        .book-button:active {
+            transform: translateY(-2px);
+        }
+
+        .book-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .book-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .success-message {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.4s ease;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .success-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #d4af37;
+            border-radius: 50%;
+            animation: floatUp 8s infinite linear;
+            opacity: 0.4;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(80px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes shimmerGold {
+            0% { background-position: -300% 0; }
+            100% { background-position: 300% 0; }
+        }
+
+        @keyframes priceGlow {
+            0% { text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+            100% { text-shadow: 0 0 20px rgba(212, 175, 55, 0.8), 0 0 30px rgba(212, 175, 55, 0.4); }
+        }
+
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.4;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .package-showcase {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .package-images {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .package-title {
+                font-size: 2.2rem;
+            }
+            
+            .package-price {
+                font-size: 2rem;
+            }
+            
+            .booking-section {
+                padding: 30px 25px;
+            }
+            
+            .booking-title {
+                font-size: 2rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .container {
+                padding: 20px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .package-images {
+                height: 300px;
+            }
+            
+            .secondary-image {
+                width: 120px;
+                height: 80px;
+            }
+            
+            .package-details {
+                padding: 25px;
+            }
+            
+            .book-button {
+                font-size: 1.2rem;
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
-
 <body class="body">
 
 
@@ -140,7 +566,7 @@
 
   
              <!-- header -->
-              <header id="header_main" class="header header-fixed style-absolute">
+                <header id="header_main" class="header header-fixed style-absolute">
         
                 <div class="header-inner">
                     <div class="header-inner-wrap">
@@ -159,7 +585,7 @@
                                     <a href="about.html">About</a>
                                 </li>
                                 <li class="menu-item menu-item-has-children">
-                                    <a href="">Event</a>
+                                    <a href="event.html">Event</a>
                                     <ul class="sub-menu">
                                          <li class="menu-item"><a href="wedding-package.html">Wedding </a></li>
                                         <li class="menu-item"><a href="birthday-package.html">Birthday </a></li>
@@ -217,7 +643,7 @@
                                     <a class="item-menu-mobile" href="about.html">About Us</a>
                                 </li>
                                 <li class="menu-item menu-item-has-children-mobile">
-                                    <a class="item-menu-mobile">Event</a>
+                                    <a class="item-menu-mobile" href="event.html">Event</a>
                                     <ul class="sub-menu-mobile">
                                         <li class="menu-item"><a href="wedding-package.html">Wedding </a></li>
                                         <li class="menu-item"><a href="birthday-package.html">Birthday </a></li>
@@ -238,230 +664,191 @@
                 </div>
             </header>
             <!-- /header -->
+    <!-- Floating Particles -->
+    <!-- Animated Background -->
+    <div class="bg-animation"></div>
+    
+    <!-- Floating Elements -->
+    <div class="floating-elements" id="floatingElements"></div>
 
-            <!-- banner-page -->
+  <div class="container" style="padding-top: 150px;">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1 class="hero-title">Royal Banquet Experience</h1>
+           
+        </div>
 
-            <div class="banner-page event-page">
-
-                <div class="themesflat-container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="text"></div>
-                            <div class="heading" style="padding-bottom: 150px;"></div>
-
-                        </div>
-                    </div>
-                </div>
-
+        <!-- Package Showcase -->
+        <div class="package-showcase">
+            <div class="package-images">
+                <img src="assets/images/item-background/18-SM154147.jpg" alt="Luxury Banquet Hall Main View" class="main-image">
+                <div class="image-overlay"></div>
+                <img src="assets/images/item-background/18-SM154147.jpg" class="secondary-image">
             </div>
-            <!-- /banner-page -->
 
-
-
-            <!-- grid-private -->
-  <!-- wg-private -->
-            <div class="wg-private">
-                <img class="item-1" src="assets/images/item-background/item-7.png" alt="">
-                <img class="item-2" src="assets/images/item-background/item-8.png" alt="">
-                <div class="themesflat-container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="heading-section text-center mb-27">
-                                <span class="sub wow fadeInUp sub-before sub-after"> event</span>
-                                <div class="main wow fadeInUp">Packages</div>
-                            </div>
-                           
-                    </div>
-                </div>
+            <div class="package-details">
+                <h2 class="package-title">Engagement Package</h2>
+                <!-- <div class="package-price">₹35,000</div> -->
+                <ul class="package-description">
+                    <li style="font-size: 18px;text-transform: capitalize;">stage decoration 42 ft Any theme for example jungle theme etc</li>
+                        <li style="font-size: 18px;text-transform: capitalize;">entry to stage carpet</li>
+                        <li style="font-size: 18px;text-transform: capitalize;">sound system with operator ( pa system)</li>
+                        <li style="font-size: 18px;text-transform: capitalize;">10 round tables with cover and tops</li>
+                        <li style="font-size: 18px;text-transform: capitalize;">vip chair cover and bow</li>
+                        <li style="font-size: 18px;text-transform: capitalize;">stage floor carpet</li>
+                        <li style="font-size: 18px;text-transform: capitalize;">2 generator for electricity backup</li>
+                        <li style="font-size: 18px;text-transform: capitalize;">8 balloon pillars</li>
+                        <li style="font-size: 18px;text-transform: capitalize;">name board with essel stand</li>
+                        <li style="font-size: 18px;text-transform: capitalize;">lights 15 to 20 led parken lights vary according to theme decor</li>
+                        <li style="font-size: 18px;text-transform: capitalize;">1 entry arch gate (artificial flowers) or with 2 cutouts</li>
+                </ul>
             </div>
-            <!-- /wg-private -->
-            <div class="grid-private">
-                <div class="private-item">
-                    <div class="content">
-                        <div class="title wow fadeInUp"><a href="#">Engagement</a></div>
-                        <p class="wow fadeInUp">We are your go-to people when it comes to engagement celebrations. As one of the prestigious wedding halls in Pune, we take pride in crafting a memorable beginning to your forever story. From elegant décor to the perfect location, we handle as much—or as little—as you need. Whether it's styling, theme planning, or guest arrangements, we take care of every single detail with utmost precision and care.</p>
-                        <ul>
-                            <li class="wow fadeInUp">
-                                <i class="icon-checkmark"></i> Your dream wedding, perfectly planned — with Rajnandini Banquet.
-                            </li>
-                            <li class="wow fadeInUp">
-                                <i class="icon-checkmark"></i> One of Pune’s most prestigious wedding venues, known for elegance and excellence.
-                            </li>
-                            <li class="wow fadeInUp">
-                                <i class="icon-checkmark"></i>  With your best interest at heart, we make your wedding unforgettable and stress-free.
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="right wow fadeInRight">
-                        <div class="swiper-container" data-swiper='{
-                            "spaceBetween": 0,
-                            "slidesPerView": 1,
-                            "navigation": {
-                                "nextEl": ".private-next",
-                                "prevEl": ".private-prev"
-                            }
-                        }'>
-                            <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                    <div class="image">
-                                        <img src="assets/images/item-background/19-SM274763.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="image">
-                                        <img src="assets/images/item-background/20-SM453576.jpg" alt="">
-                                    </div>
-                                </div>
-                            
-                                <div class="swiper-slide">
-                                    <div class="image">
-                                        <img src="assets/images/item-background/120-SM504144.jpg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-button">
-                                <div class="swiper-button-prev private-prev style-3"></div>
-                                <div class="swiper-button-next private-next style-3"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
-             
+        </div>
 
-    <!-- Wedding Package Section -->
-<section class="wedding-packages" style="padding: 60px 0; background-color: #f9f9f9; font-family: 'Segoe UI', sans-serif;">
-  <div class="container" style="max-width: 1140px; margin: auto; padding: 0 20px;">
-    <div class="section-header" style="text-align: center; margin-bottom: 40px;">
-      <h2 style="font-size: 36px; font-weight: bold; color: #333; margin-bottom: 10px;">Engagement Packages</h2>
-      <p style="font-size: 18px; color: #777;">Celebrate your big day with elegance, comfort, and unforgettable memories.</p>
+        <!-- Booking Section -->
+        <div class="booking-section">
+            <h3 class="booking-title">Reserve Your Date</h3>
+            <form class="booking-form" onsubmit="handleBooking(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <input type="text" class="form-input" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-input" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="time" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-input" placeholder="Number of Guests" min="1" required>
+                    </div>
+                </div>
+                <button type="submit" class="book-button">Book Your Event Now</button>
+                <div class="success-message" id="successMessage">
+                    🎉 Booking request submitted successfully! Our team will contact you within 24 hours to confirm your reservation.
+                </div>
+            </form>
+        </div>
     </div>
 
-    <div class="package-container">
-    <div class="package-item">Stage decoration 42 ft – any theme (e.g., jungle theme)</div>
-    <div class="package-item">Entry to stage carpet</div>
-    <div class="package-item">Sound system with operator (PA system)</div>
-    <div class="package-item">10 round tables with covers and tops</div>
-    <div class="package-item">VIP chair covers with bows</div>
-    <div class="package-item">Stage floor carpet</div>
-    <div class="package-item">2 generators for electricity backup</div>
-    <div class="package-item">8 balloon pillars</div>
-    <div class="package-item">Name board with easel stand</div>
-    <div class="package-item">15 to 20 LED par lights (depending on theme décor)</div>
-    <div class="package-item">1 entry arch gate (artificial flowers) or with 2 cutouts</div>
-  </div>
-  </div>
-</section>
+    <script>
+        // Create floating elements
+        function createFloatingElements() {
+            const container = document.getElementById('floatingElements');
+            
+            for (let i = 0; i < 12; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.style.left = Math.random() * 100 + '%';
+                element.style.animationDelay = Math.random() * 8 + 's';
+                element.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                container.appendChild(element);
+            }
+        }
 
-<!-- Simple fade-in animation -->
-<style>
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
- .package-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .package-item {
-      flex: 1 1 calc(33.333% - 20px);
-      background: #ffffff;
-      padding: 20px;
-      font-size: 18px;
-      border-radius: 8px;
-      text-transform: capitalize;
-      border: 1px solid #c4b1b1;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.6s ease forwards;
-    }
-
-    /* Add animation delay based on position */
-    .package-item:nth-child(1) { animation-delay: 0.1s; }
-    .package-item:nth-child(2) { animation-delay: 0.2s; }
-    .package-item:nth-child(3) { animation-delay: 0.3s; }
-    .package-item:nth-child(4) { animation-delay: 0.4s; }
-    .package-item:nth-child(5) { animation-delay: 0.5s; }
-    .package-item:nth-child(6) { animation-delay: 0.6s; }
-    .package-item:nth-child(7) { animation-delay: 0.7s; }
-    .package-item:nth-child(8) { animation-delay: 0.8s; }
-    .package-item:nth-child(9) { animation-delay: 0.9s; }
-    .package-item:nth-child(10) { animation-delay: 1.0s; }
-    .package-item:nth-child(11) { animation-delay: 1.1s; }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .package-item {
-        flex: 1 1 100%;
-      }
-    }
-</style>
-
-
-
-         <!-- wg-reservation -->
-           <div class="wg-reservation" >
-      
-                <!-- <img class="item-2" src="assets/images/item-background/cup.png" alt=""> -->
-                <div class="themesflat-container ">
-                    <div class="row">
+        // Handle booking form submission
+        function handleBooking(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const inputs = form.querySelectorAll('.form-input');
+            const button = form.querySelector('.book-button');
+            const successMessage = document.getElementById('successMessage');
+            
+            let isValid = true;
+            
+            // Validate inputs
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.style.borderColor = '#ff4444';
+                    input.style.boxShadow = '0 0 15px rgba(255, 68, 68, 0.3)';
                     
-                        <div class="col-12">
-                            <div class="wrap">
-                                <!-- <div class="icon"><i class="icon-phone"></i></div> -->
-                                <h4 class="text-center p-6">Book your Packages</h4>
-                                <form class="comment-form type-1">
-                                    <div class="columns">
-                                        <fieldset class="name">
-                                            <input type="text" placeholder="Name*" class="style-2" name="name" tabindex="2" value="" aria-required="true" required="">
-                                        </fieldset>
-                                        <fieldset class="number">
-                                            <input type="text" placeholder="Phone*" class="style-2" name="text" tabindex="2" value="" aria-required="true" required="">
-                                        </fieldset>
-                                    </div>
-                                    <div class="columns">
-                                        <fieldset class="select t1 event-time">
-                                            <select class="style-1">
-                                                <option value="Subject" selected>Arrival time</option>
-                                                <option value="Subject">6:00 AM</option>
-                                                <option value="Subject">6:00 PM</option>
-                                            </select>
-                                        </fieldset>
-                                        <fieldset class="select t1 event-number">
-                                            <select class="style-1">
-                                                <option value="Subject" selected>People</option>
-                                                <option value="Subject">5</option>
-                                                <option value="Subject">10</option>
-                                            </select>
-                                        </fieldset>
-                                        <fieldset class="date">
-                                            <input type="date" class="style-2" name="date" tabindex="2" value="2023-09-18" aria-required="true" required="">
-                                        </fieldset>
-                                    </div>
-                                    <div class="bottom">
-                                        <button class="m-auto button-style-1" type="submit">BOOK </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /wg-reservation -->
-               <!-- footer -->
-               <footer id="footer" class="footer">
-                <img class="item-1" src="assets/images/item-background/footer-1.png" alt="">
-                <img class="item-2" src="assets/images/item-background/footer-2.png" alt="">
+                    setTimeout(() => {
+                        input.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+                        input.style.boxShadow = 'none';
+                    }, 2000);
+                }
+            });
+            
+            if (isValid) {
+                // Show success animation
+                successMessage.classList.add('show');
+                
+                // Button success state
+                button.innerHTML = '✓ Booking Submitted!';
+                button.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
+                button.style.transform = 'scale(0.98)';
+                
+                // Reset form
+                form.reset();
+                
+                // Hide success message and reset button after 4 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                    button.innerHTML = 'Book Your Event Now';
+                    button.style.background = 'linear-gradient(45deg, #d4af37, #f4e4a6, #d4af37)';
+                    button.style.transform = 'scale(1)';
+                }, 4000);
+            }
+        }
+
+        // Enhanced input animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('.form-input');
+            
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'translateY(-5px)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Initialize floating elements
+            createFloatingElements();
+        });
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.package-images');
+            
+            parallaxElements.forEach(el => {
+                const speed = 0.5;
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Add intersection observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for scroll animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.package-showcase, .booking-section');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
+      <footer id="footer" class="footer">
+                <!-- <img class="item-1" src="assets/images/item-background/footer-1.png" alt="">
+                <img class="item-2" src="assets/images/item-background/footer-2.png" alt=""> -->
                 <div class="themesflat-container">
                     <div class="row">
                         <div class="col-md-6 col-lg-3 logo">
@@ -579,20 +966,9 @@ Dhanori, Pune, Maharashtra, 411015.
                     </div>
                 </div>
             </footer>
-            <!-- /footer -->
-
-
-        </div>
-        <!-- /#page -->
-
-
-        
     </div>
-    <!-- /#wrapper -->
-
-
-
-    <!-- go top button -->
+    </div>
+       <!-- go top button -->
     <div class="progress-wrap active-progress">
         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
             <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
@@ -610,10 +986,6 @@ Dhanori, Pune, Maharashtra, 411015.
     <script src="assets/js/nouislider.min.js"></script>
     <script src="assets/js/magnific-popup.min.js"></script>
     <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/main.js"></script>
-
+    <script src="assets/js/main.js"></script> 
 </body>
-
-
-
 </html>
