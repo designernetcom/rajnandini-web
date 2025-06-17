@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Banquet Package</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 25%, #2d2d2d 50%, #1a1a1a 75%, #0f0f0f 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 80px;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease-out forwards;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #d4af37, #f4e4a6, #d4af37, #b8941f);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: shimmerGold 4s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: #cccccc;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .package-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+            opacity: 0;
+            animation: slideInUp 1s ease-out 0.3s forwards;
+        }
+
+        .package-images {
+            position: relative;
+            height: 500px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+            filter: brightness(0.9);
+        }
+
+        .package-showcase:hover .main-image {
+            transform: scale(1.05);
+            filter: brightness(1);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(0,0,0,0.3) 100%);
+        }
+
+        .secondary-image {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 150px;
+            height: 100px;
+            border-radius: 15px;
+            object-fit: cover;
+            border: 3px solid #d4af37;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+        }
+
+        .secondary-image:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
+        }
+
+        .package-details {
+            padding: 40px;
+            background: linear-gradient(145deg, rgba(42, 42, 42, 0.8), rgba(30, 30, 30, 0.8));
+            border-radius: 25px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .package-details:hover::before {
+            left: 100%;
+        }
+
+        .package-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #d4af37, #f4e4a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            animation: priceGlow 2s ease-in-out infinite alternate;
+        }
+
+        .package-description {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .package-description li {
+            padding: 12px 0;
+            position: relative;
+            padding-left: 35px;
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInLeft 0.6s ease-out forwards;
+        }
+
+        .package-description li:nth-child(1) { animation-delay: 0.1s; }
+        .package-description li:nth-child(2) { animation-delay: 0.2s; }
+        .package-description li:nth-child(3) { animation-delay: 0.3s; }
+        .package-description li:nth-child(4) { animation-delay: 0.4s; }
+        .package-description li:nth-child(5) { animation-delay: 0.5s; }
+        .package-description li:nth-child(6) { animation-delay: 0.6s; }
+        .package-description li:nth-child(7) { animation-delay: 0.7s; }
+        .package-description li:nth-child(8) { animation-delay: 0.8s; }
+
+        .package-description li::before {
+            content: '★';
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+            font-size: 1.5rem;
+            animation: starTwinkle 2s ease-in-out infinite;
+        }
+
+        .package-description li:hover {
+            color: #d4af37;
+            transform: translateX(10px);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .booking-section {
+            background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+            border-radius: 30px;
+            padding: 50px;
+            margin-top: 60px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            opacity: 0;
+            animation: slideInUp 1s ease-out 0.6s forwards;
+        }
+
+        .booking-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 30px;
+            padding: 2px;
+            background: linear-gradient(45deg, #d4af37, transparent, #d4af37);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: exclude;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+        }
+
+        .booking-title {
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .booking-form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            color: #ffffff;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #aaaaaa;
+            transition: color 0.3s ease;
+        }
+
+        .form-input:focus::placeholder {
+            color: #d4af37;
+        }
+
+        .book-button {
+            width: 100%;
+            padding: 25px;
+            background: linear-gradient(45deg, #d4af37, #f4e4a6, #d4af37);
+            background-size: 300% 300%;
+            border: none;
+            border-radius: 50px;
+            color: #1a1a1a;
+            font-size: 1.4rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .book-button:hover {
+            animation: shimmerGold 1.5s ease-in-out;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        .book-button:active {
+            transform: translateY(-2px);
+        }
+
+        .book-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .book-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .success-message {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.4s ease;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .success-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #d4af37;
+            border-radius: 50%;
+            animation: floatUp 8s infinite linear;
+            opacity: 0.4;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(80px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes shimmerGold {
+            0% { background-position: -300% 0; }
+            100% { background-position: 300% 0; }
+        }
+
+        @keyframes priceGlow {
+            0% { text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+            100% { text-shadow: 0 0 20px rgba(212, 175, 55, 0.8), 0 0 30px rgba(212, 175, 55, 0.4); }
+        }
+
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.4;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .package-showcase {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .package-images {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .package-title {
+                font-size: 2.2rem;
+            }
+            
+            .package-price {
+                font-size: 2rem;
+            }
+            
+            .booking-section {
+                padding: 30px 25px;
+            }
+            
+            .booking-title {
+                font-size: 2rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .container {
+                padding: 20px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .package-images {
+                height: 300px;
+            }
+            
+            .secondary-image {
+                width: 120px;
+                height: 80px;
+            }
+            
+            .package-details {
+                padding: 25px;
+            }
+            
+            .book-button {
+                font-size: 1.2rem;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation"></div>
+    
+    <!-- Floating Elements -->
+    <div class="floating-elements" id="floatingElements"></div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1 class="hero-title">Royal Banquet Experience</h1>
+            <p class="hero-subtitle">Transform your special moments into unforgettable memories with our premium banquet hall package designed for perfection</p>
+        </div>
+
+        <!-- Package Showcase -->
+        <div class="package-showcase">
+            <div class="package-images">
+                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Luxury Banquet Hall Main View" class="main-image">
+                <div class="image-overlay"></div>
+                <img src="https://images.unsplash.com/photo-1464207687429-7505649dae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Banquet Hall Detail View" class="secondary-image">
+            </div>
+
+            <div class="package-details">
+                <h2 class="package-title">Premium Package</h2>
+                <div class="package-price">₹35,000</div>
+                <ul class="package-description">
+                    <li>Elegant hall decoration with premium floral arrangements</li>
+                    <li>Professional lighting and high-quality sound system</li>
+                    <li>Complimentary red carpet entrance with welcome area</li>
+                    <li>Dedicated event coordinator and support staff</li>
+                    <li>Premium furniture with luxury table settings</li>
+                    <li>Central air conditioning and comfortable seating</li>
+                    <li>Free valet parking for up to 100 vehicles</li>
+                    <li>Professional photography area with custom backdrop</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Booking Section -->
+        <div class="booking-section">
+            <h3 class="booking-title">Reserve Your Date</h3>
+            <form class="booking-form" onsubmit="handleBooking(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <input type="text" class="form-input" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-input" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="time" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-input" placeholder="Number of Guests" min="1" required>
+                    </div>
+                </div>
+                <button type="submit" class="book-button">Book Your Event Now</button>
+                <div class="success-message" id="successMessage">
+                    🎉 Booking request submitted successfully! Our team will contact you within 24 hours to confirm your reservation.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Create floating elements
+        function createFloatingElements() {
+            const container = document.getElementById('floatingElements');
+            
+            for (let i = 0; i < 12; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.style.left = Math.random() * 100 + '%';
+                element.style.animationDelay = Math.random() * 8 + 's';
+                element.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                container.appendChild(element);
+            }
+        }
+
+        // Handle booking form submission
+        function handleBooking(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const inputs = form.querySelectorAll('.form-input');
+            const button = form.querySelector('.book-button');
+            const successMessage = document.getElementById('successMessage');
+            
+            let isValid = true;
+            
+            // Validate inputs
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.style.borderColor = '#ff4444';
+                    input.style.boxShadow = '0 0 15px rgba(255, 68, 68, 0.3)';
+                    
+                    setTimeout(() => {
+                        input.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+                        input.style.boxShadow = 'none';
+                    }, 2000);
+                }
+            });
+            
+            if (isValid) {
+                // Show success animation
+                successMessage.classList.add('show');
+                
+                // Button success state
+                button.innerHTML = '✓ Booking Submitted!';
+                button.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
+                button.style.transform = 'scale(0.98)';
+                
+                // Reset form
+                form.reset();
+                
+                // Hide success message and reset button after 4 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                    button.innerHTML = 'Book Your Event Now';
+                    button.style.background = 'linear-gradient(45deg, #d4af37, #f4e4a6, #d4af37)';
+                    button.style.transform = 'scale(1)';
+                }, 4000);
+            }
+        }
+
+        // Enhanced input animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('.form-input');
+            
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'translateY(-5px)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Initialize floating elements
+            createFloatingElements();
+        });
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.package-images');
+            
+            parallaxElements.forEach(el => {
+                const speed = 0.5;
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Add intersection observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for scroll animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.package-showcase, .booking-section');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
