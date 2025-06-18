@@ -3,7 +3,47 @@
 <!--[if (gte IE 9)|!(IE)]><!-->
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <!--<![endif]-->
+<!-- <style>
+    .social-sidebar {
+      position: fixed;
+      top: 50%;
+      /* left: 0; */
+      right: 0;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      background-color: rgba(0, 0, 0, 0.7); /* semi-transparent */
+      padding: 8px 4px;
+      border-radius: 0 8px 8px 0;
+      z-index: 999; /* ensures it stays on top but below slider controls if needed */
+      pointer-events: auto;
+    }
+    
+    .social-sidebar a {
+      color: white;
+      font-size: 18px;
+      margin: 10px 0;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .social-sidebar a:hover {
+      color: #00aced;
+      transform: scale(1.1);
+    }
+    .slider-container {
+  padding-left: 40px; /* adjust based on icon width */
+}
 
+    @media (max-width: 768px) {
+  .social-sidebar {
+    display: none;
+  }
+}
+
+    </style> -->
+    
+    
 <head>
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
@@ -166,6 +206,23 @@
     flex: 0 0 100%;
   }
 }
+/* Mobile view: Fixed image size */
+@media (max-width: 768px) {
+  .multi-carousel-item .img-container {
+    width: 100%; /* Fixed width for mobile */
+    height: 500px; /* Fixed height for mobile */
+    overflow: hidden; /* Hide overflow if image doesn't fit perfectly */
+  }
+
+  .multi-carousel-item .img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+  }
+}
+
+
+
 </style>
 </head>
 
@@ -810,8 +867,21 @@
             </div>
            </div>
             <!-- /wg-testimonial -->
-   
-
+            <div class="social-icons">
+               
+                <a href="https://wa.me/9960107777" class="social-icon whatsapp" target="_blank">
+                    <img src="./assets/images/logo/whatsapp.png" alt="WhatsApp">
+                </a>
+                
+                <a href="https://www.facebook.com/people/Rajnandini-Banquet/61555272463413/" class="social-icon facebook" target="_blank">
+                    <img src="./assets/images/logo/facebook.png" alt="Facebook">
+                </a>
+                <a href="https://www.instagram.com/rajnandini_banquet" class="social-icon instagram"
+                    target="_blank">
+                    <img src="./assets/images/logo/insta.png" alt="Instagram" >
+                </a>
+            </div>               
+              
                   <!-- footer -->
             <footer id="footer" class="footer">
                 <!-- <img class="item-1" src="assets/images/item-background/footer-1.png" alt="">
@@ -899,8 +969,9 @@
                                 <li>
                                     <div class="text">
                                         <span>LOCATION:</span> <br>
-                                        Sr. No. 25, Near Satyam Rajyog Society, 
-Dhanori, Pune, Maharashtra, 411015.   
+                                        <a href="https://www.google.com/maps/search/?api=1&query=Sr.+No.+25,+Near+Satyam+Rajyog+Society,+Dhanori,+Pune,+Maharashtra,+411015" target="_blank" style="color: #fff;">
+                                            Sr. No. 25, Near Satyam Rajyog Society, Dhanori, Pune, Maharashtra, 411015
+                                        </a>
                                     </div>
                                 </li>
                                 <li>
@@ -918,7 +989,19 @@ Dhanori, Pune, Maharashtra, 411015.
                         </div>
                          <div class="col-md-6 col-lg-3 time">
                             <div class="title-wg">Scanner</div>
-                           <img src="assets/images/amenities/istockphoto-1322805937-612x612.jpg" />
+                            <img src="assets/images/amenities/istockphoto-1322805937-612x612.jpg" />
+                            <div class="title-wg">Map</div>
+                            <ul>
+                                <li>
+                                    <div class="text">
+                                        
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.580013327508!2d73.89868527519343!3d18.592963982514714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c6c5369443c9%3A0xbf624fb3d76db378!2sSatyam%20Rajyog!5e0!3m2!1sen!2sin!4v1750049374329!5m2!1sen!2sin" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    </div>
+                                </li>
+                  
+                            </ul>
+                     
+          
                         </div>
                             
                     </div>
